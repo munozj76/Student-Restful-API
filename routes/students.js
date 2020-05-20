@@ -31,43 +31,72 @@ router.get('/', (req, res) => {
 
 //posts student's grade
 router.post('/:grade', function(req, res){
-    let result;
-    const grade = req.body;
-    if(student.id && student.name && student.grade ){
-        grade.push({ id: student.id, name: student.name, grade: student.grade })
-
+     if(req.query.grade && req.query.id)
+     {
         result = {
             "status": "success",
-            "message": "The grade has been successfully added"
-        }
-    }else{
+            "message": "The grade has been successfully added"}
+     }
+     else
+     {
         result = {
             "status": "failed",
             "message": "The grade has not been added"
         }
         res.status(400);
-    }
-    res.json(result);
+     }
+     res.json(result);
+    // if(student.id && student.name && student.grade ){
+    //     grade.push({ id: student.id, name: student.name, grade: student.grade })
+
+    //     result = {
+    //         "status": "success",
+    //         "message": "The grade has been successfully added"
+    //     }
+    // }else{
+    //     result = {
+    //         "status": "failed",
+    //         "message": "The grade has not been added"
+    //     }
+    //     res.status(400);
+    // }
+    // res.json(result);
 });
 
 //gets username and email for register
 router.post('/:register', function(req, res){
-    let result;
-    const register = req.body;
-    //const user = {username: req.body.username, email: req.body.email };
-    if(register.username && register.email )    {
-        result = {
-            "status": "success",
-            "message": "You have successfully registered"
-        }
-    }else{
-        result = {
-            "status": "failed",
-            "message": "You did not registered"
-        }
-        res.status(400);
+    if(req.query.username && req.query.email)
+    {
+       result = {
+           "status": "success",
+           "message": "You have successfully registered"}
+    }
+    else
+    {
+       result = {
+           "status": "failed",
+           "message": "You did not registered"
+       }
+       res.status(400);
     }
     res.json(result);
+
+    // let result;
+    // const register = req.body;
+    // //const user = {username: req.body.username, email: req.body.email };
+    // if(register.username && register.email )    {
+    //     result = {
+    //         "status": "success",
+    //         "message": "You have successfully registered"
+    //     }
+    // }else{
+    //     result = {
+    //         "status": "failed",
+    //         "message": "You did not registered"
+    //     }
+    //     res.status(400);
+    // }
+    // res.json(result);
 });
 
 module.exports = router
